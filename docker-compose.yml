@@ -1,0 +1,16 @@
+services:
+  career-ops:
+    build: .
+    container_name: career-ops
+    volumes:
+      - ./cv.md:/app/cv.md
+      - ./config/profile.yml:/app/config/profile.yml
+      - ./portals.yml:/app/portals.yml
+      - ./data:/app/data
+      - ./output:/app/output
+      - ./reports:/app/reports
+    environment:
+      - NODE_ENV=production
+    stdin_open: true
+    tty: true
+    command: /bin/sh -c "npm run doctor && exec /bin/sh"
